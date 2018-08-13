@@ -38,7 +38,7 @@ def residualVol(N, residual=True):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-N", "--ndim", action="store", default=9,
-                        type=int, help="upper limit of number ofc dimensions")
+                        type=int, help="upper limit of number of dimensions")
     parser.add_argument("-c", "--continuous", action="store_true", default=False,
                         help="Use this to use continuous array of dimensions")
     args = parser.parse_args()
