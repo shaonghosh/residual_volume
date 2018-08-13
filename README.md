@@ -21,7 +21,7 @@ Volume of the hyper-cube - volume of one hyper-sphere at the vertex - volume of 
 
 ## Observation 
 
-It was observed that this residual volume get larger with increasing dimensionality of the space until D<6, and then the 
+It was observed that this residual volume gets larger with increasing dimensionality of the space until D<6, and then the 
 residual volume gets lower and beyond D>6.5 the residual volume is negative, meaning the volume of the hyper-cube is smaller than the
 volume of the combined volume occupied by the hyper-spheres. It was also observed that the difference between the volumes of the hyper-cube and the central hyper-sphere follows the same trend. 
 However, when we plot the fractional residual volume, which is the residual volume divided by the volume of the hyper-cube, and the fraction difference between the hyper-cube's volume and the hyper-sphere's volume then we note the following:
