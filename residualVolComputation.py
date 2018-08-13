@@ -52,6 +52,7 @@ if __name__ == "__main__":
     resVols_central = residualVol(dims, residual=False)
     frac_resVols = resVols/(2**dims)
     frac_resVols_central = resVols_central/(2**dims)
+    vol_factor = (np.pi**(dims/2))/((2**dims)*gamma(dims/2 + 1))
     if args.continuous:
         marker1 = 'r-'
         marker2 = 'b--'
@@ -70,11 +71,14 @@ if __name__ == "__main__":
     pl.subplot(2,1,2)
     p1, = pl.plot(dims, frac_resVols, marker1)
     p2, = pl.plot(dims, frac_resVols_central, marker2)
-    pl.legend([p1, p2], ['Fractional residual volume',
-                         '(Volume of box - central ball)/Volume of box'])
+    p3, = pl.plot(dims, vol_factor, 'k:')
+
+    pl.legend([p1, p2, p3], ['Fractional residual volume',
+                             '(Volume of box - central ball)/Volume of box',
+                             'Volume of ball at vertex/volume of box'])
 
     pl.xlabel('Number of dimensions')
-    pl.ylabel('Fractional volume left after putting all the balls')
+    pl.ylabel('Fractional volume')
     pl.grid(1)
 
 
