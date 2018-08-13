@@ -12,11 +12,11 @@ for higher dimensions.
 
 This observation led me to wonder how much of the volume is actually available for the central hyper-sphere. Since we are putting
 the hyper-spheres in each vertices of the hyper-cube, if we extend the hyper-cube to a hyper-lattice, we can imagine each hyper-sphere
-being shared by 2^N of adjascent hyper-cubes where N is the number of dimensions. Thus a single hyper-cube will get 1/(2^N)th 
-share of each hyper-sphere from each of the 2^N hyper-spheres in its 2^N vertices. Thus the total volume of the hyper-spheres 
+being shared by 2^N of adjacent hyper-cubes where N is the number of dimensions. Thus a single hyper-cube will get 1/(2^N)th 
+share of each hyper-sphere from each of the 2^N hyper-spheres in its 2^N vertices. Thus, the total volume of the hyper-spheres 
 enclosed within the hyper-cube is same a that of a single hyper-cube in the vertices. Now if we are to put a hyper-sphere at the
 center of the hyper-cube, the largest radius of this non-overlapping hyper-sphere that we can put given by N^(1/2) - 1, where
-the sides of the hyper-cube is 2 units and the radius of the hyper-spheres is 1 unit. We define the residual volume as,
+the sides of the hyper-cube are 2 units and the radius of the hyper-spheres is 1 unit. We define the residual volume as,
 Volume of the hyper-cube - volume of one hyper-sphere at the vertex - volume of the hyper-sphere at the center.
 
 ## Observation 
