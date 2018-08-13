@@ -4,6 +4,7 @@ import numpy as np
 import pylab as pl
 from scipy.special import gamma
 from scipy.optimize import fsolve
+import argparse
 
 
 def residualVol(N, residual=True):
@@ -19,8 +20,8 @@ def residualVol(N, residual=True):
     centralBallVol = Volume of the largest n-ball that can fit at the center of box
 	resVol = Volume left
 
-    Returns :: The residual volume or the difference between volume of the box and the
-               central ball
+    Returns :: The residual volume (use residual=True) or the difference between volume
+               of the box (use residual=False) and the central ball
     '''
     boxVol = 2**N
     # Vol of n-Ball from  https://en.wikipedia.org/wiki/Volume_of_an_n-ball #
@@ -35,24 +36,40 @@ def residualVol(N, residual=True):
 
 
 if __name__ == "__main__":
-    dims = np.arange(2, 9)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-N", "--ndim", action="store", default=9,
+                        type=int, help="upper limit of number ofc dimensions")
+    parser.add_argument("-c", "--continuous", action="store_true", default=False,
+                        help="Use this to use continuous array of dimensions")
+    args = parser.parse_args()
+
+    if not args.continuous:
+        dims = np.arange(2, args.ndim)
+    else:
+        dims = np.linspace(2,  args.ndim-1, 1000)
+
     resVols = residualVol(dims)
     resVols_central = residualVol(dims, residual=False)
     frac_resVols = resVols/(2**dims)
     frac_resVols_central = resVols_central/(2**dims)
+    if args.continuous:
+        marker1 = 'r-'
+        marker2 = 'b--'
+    else:
+        marker1 = 'r-o'
+        marker2 = 'b--o'
     pl.figure(figsize=(7.5,7.5))
-
     pl.subplot(2,1,1)
-    p1, = pl.plot(dims, resVols, 'r-o')
-    p2, = pl.plot(dims, resVols_central, 'b--o')
+    p1, = pl.plot(dims, resVols, marker1)
+    p2, = pl.plot(dims, resVols_central, marker2)
     pl.legend([p1, p2], ['Residual volume', 'Volume of box - central ball'])
 
     pl.xlabel('Number of dimensions')
     pl.ylabel('Volume left after putting all the balls')
     pl.grid(1)
     pl.subplot(2,1,2)
-    p1, = pl.plot(dims, frac_resVols, 'r-o')
-    p2, = pl.plot(dims, frac_resVols_central, 'b--o')
+    p1, = pl.plot(dims, frac_resVols, marker1)
+    p2, = pl.plot(dims, frac_resVols_central, marker2)
     pl.legend([p1, p2], ['Fractional residual volume',
                          '(Volume of box - central ball)/Volume of box'])
 
