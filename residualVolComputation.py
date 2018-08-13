@@ -38,15 +38,32 @@ if __name__ == "__main__":
     dims = np.arange(2, 9)
     resVols = residualVol(dims)
     resVols_central = residualVol(dims, residual=False)
+    frac_resVols = resVols/(2**dims)
+    frac_resVols_central = resVols_central/(2**dims)
+    pl.figure(figsize=(7.5,7.5))
+
+    pl.subplot(2,1,1)
     p1, = pl.plot(dims, resVols, 'r-o')
-    p2, = pl.plot(dims, resVols_central, 'b-o')
+    p2, = pl.plot(dims, resVols_central, 'b--o')
     pl.legend([p1, p2], ['Residual volume', 'Volume of box - central ball'])
 
     pl.xlabel('Number of dimensions')
     pl.ylabel('Volume left after putting all the balls')
     pl.grid(1)
+    pl.subplot(2,1,2)
+    p1, = pl.plot(dims, frac_resVols, 'r-o')
+    p2, = pl.plot(dims, frac_resVols_central, 'b--o')
+    pl.legend([p1, p2], ['Fractional residual volume',
+                         '(Volume of box - central ball)/Volume of box'])
+
+    pl.xlabel('Number of dimensions')
+    pl.ylabel('Fractional volume left after putting all the balls')
+    pl.grid(1)
+
+
     zero_of_residualVol = fsolve(residualVol, 6, xtol=1e-12)
     zero_of_residualVol_cental = fsolve(residualVol, 6, args=(False), xtol=1e-12)
+ 
 
     print('The residual volume vanishes at D = {}'.format(zero_of_residualVol[0]))
     print('The volume of the central ball exceeds volume of box at D = {}'.format(zero_of_residualVol_cental[0]))
